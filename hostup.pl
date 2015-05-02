@@ -5,7 +5,7 @@ use warnings;
 
 use Getopt::Long;
 
-use Host;
+use Hostup::Host;
 
 my %opt = (
 	config_path	=> "$ENV{HOME}/.hostsup.conf",

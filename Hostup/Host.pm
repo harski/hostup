@@ -127,5 +127,4 @@ sub set_status {
 	$self->log_statuschange() if $self->{is_up} != $self->{old_status};
 }
 
-
 1;
