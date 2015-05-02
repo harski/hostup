@@ -49,7 +49,7 @@ sub new {
 sub log {
 	my ($self, $msg) = @_;
 
-	my $timestr = strftime " %Y%d%m-%H%M%S", localtime;
+	my $timestr = strftime " %Y%m%d-%H%M%S", localtime;
 
 	open my $lfh, '>>', $self->{logfile};
 	flock($lfh, LOCK_EX);
