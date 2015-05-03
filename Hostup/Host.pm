@@ -3,8 +3,8 @@ package Hostup::Host;
 use strict;
 use warnings;
 use v5.20;
-use Fcntl qw(:flock SEEK_END);
-use POSIX qw(strftime);
+
+use Hostup::Util qw(log_str);
 
 sub DEBUG { 0; };
 
@@ -48,16 +48,7 @@ sub new {
 
 sub log {
 	my ($self, $msg) = @_;
-
-	my $timestr = strftime " %Y%m%d-%H%M%S", localtime;
-
-	open my $lfh, '>>', $self->{logfile};
-	flock($lfh, LOCK_EX);
-	seek($lfh, 0, SEEK_END);
-
-	print $lfh "$timestr: host($self->{name}): $msg\n";
-
-	close $lfh;
+	log_str($self->{logfile}, $self->{name}, $msg);
 }
 
 
