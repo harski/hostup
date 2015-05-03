@@ -1,4 +1,4 @@
-package Host;
+package Hostup::Host;
 
 use strict;
 use warnings;

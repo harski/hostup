@@ -4,7 +4,6 @@ use strict;
 use warnings;
 
 use Getopt::Long;
-
 use Hostup::Host;
 
 my %opt = (
@@ -27,7 +26,7 @@ sub load_hosts {
 		while (my $line = <$file>) {
 			#if ($line =~ /$CONFIG_HOST/) {
 			if ($line =~ /\A \s* host \s+ (\S+) \s+ (\S+)/xms) {
-				push @hosts, Host->new($1, $2, $opt{logfile});
+				push @hosts, Hostup::Host->new($1, $2, $opt{logfile});
 			}
 		}
 
