@@ -5,6 +5,7 @@ use warnings;
 
 use Getopt::Long;
 use Hostup::Host;
+use Hostup::Util qw(log_str);
 
 my %opt = (
 	config_path	=> "$ENV{HOME}/.hostsup.conf",
@@ -24,7 +25,6 @@ sub load_hosts {
 		open my $file, '<', $path or die $!;
 
 		while (my $line = <$file>) {
-			#if ($line =~ /$CONFIG_HOST/) {
 			if ($line =~ /\A \s* host \s+ (\S+) \s+ (\S+)/xms) {
 				push @hosts, Hostup::Host->new($1, $2, $opt{logfile});
 			}
@@ -62,10 +62,7 @@ sub start_pingers {
 my $hosts_ref = load_hosts($opt{config_path});
 my $pingers_ref = start_pingers($hosts_ref);
 
-
-# TODO: log program start. Check the logfile lock, too, and if file is locked
-# terminate. It implies that another instance is already running.
-# open my $logfh, '>>', $opt{logfile} or die $!;
+log_str($opt{logfile}, "hostup_service", "STARTED");
 
 # wait for children to die
 # TODO: add signal handler to kill children
