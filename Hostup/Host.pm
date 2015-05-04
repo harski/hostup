@@ -1,3 +1,6 @@
+# Copyright 2015 Tuomo Hartikainen <tth@harski.org>.
+# Licensed under the 2-clause BSD license, see LICENSE for details.
+
 package Hostup::Host;
 
 use strict;
