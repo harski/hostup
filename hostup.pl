@@ -15,8 +15,9 @@ my %opt = (
 	logfile		=> "$ENV{HOME}/.hostsup.log",
 );
 
-#GetOptions('c|config=s' => %opt{'config_path'})
-#	or die("Error in command line arguments\n");
+GetOptions('c|config=s' => \$opt{'config_path'},
+	   'l|log=s'	=> \$opt{logfile},
+	  ) or die("Error in command line arguments\n");
 
 
 sub load_hosts {
