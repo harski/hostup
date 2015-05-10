@@ -6,19 +6,25 @@
 use strict;
 use warnings;
 
+use v5.20;
 use Getopt::Long;
 use Hostup::Host;
 use Hostup::Util qw(log_str);
+use Readonly;
+
+Readonly my $VERSION => "0.1";
 
 my %opt = (
+	action_help	=> 0,
+	action_version	=> 0,
 	config_path	=> "$ENV{HOME}/.hostsup.conf",
-	help		=> 0,
 	logfile		=> "$ENV{HOME}/.hostsup.log",
 );
 
 GetOptions('c|config=s' => \$opt{config_path},
-	   'h|help|usage!'	=> \$opt{help},
+	   'h|help|usage!'	=> \$opt{action_help},
 	   'l|log=s'	=> \$opt{logfile},
+	   'V|version!'	=> \$opt{action_version},
 	  ) or die("Error in command line arguments\n");
 
 
@@ -70,7 +76,17 @@ Options:
   -c, --config CONFIG_FILE
   -h, --help, --usage
   -l, --log LOG_FILE
+  -V, --version
 HELP_END
+}
+
+
+sub print_version {
+	print <<PRINT_VERSION
+$0 version $VERSION
+Copyright 2015 Tuomo Hartikainen <tth\@harski.org>.
+Licensed under the 2-clause BSD license.
+PRINT_VERSION
 }
 
 
@@ -96,8 +112,10 @@ sub start_pingers {
 }
 
 
-if ($opt{help}) {
+if ($opt{action_help}) {
 	print_help();
+} elsif ($opt{action_version}) {
+	print_version();
 } else {
 	action_hostup();
 }
