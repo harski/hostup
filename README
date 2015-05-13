@@ -5,10 +5,6 @@ hostup is a program for tracking if remote hosts are up. The check is based on
 pinging each host.
 
 
-INSTALLING AND UNISTALLING
---------------------------
-
-
 USAGE
 -----
 
