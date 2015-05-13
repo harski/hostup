@@ -1,0 +1,63 @@
+HOSTUP
+======
+
+hostup is a program for tracking if remote hosts are up. The check is based on
+pinging each host.
+
+
+INSTALLING AND UNISTALLING
+--------------------------
+
+
+USAGE
+-----
+
+When running normally, the hostup doesn't ouput anything to stdout. Instead, it
+prints everything to its logfile.
+
+Running the program is straightforward:
+
+    hostup
+    hostup -l /path/to/log_file -c /path/to/config_file
+
+If log file is not supplied, it defaults to $HOME/.hostup.log. If config file
+is not supplied, it defaults to $HOME/.hostup.conf.
+
+
+CONFIGURATION
+-------------
+
+Configuration file must consist of list of hosts to be tracked, each on
+separate lines. Blank lines are allowed, and if a line has the character '#'
+everything after it is treated as a comment rather than a configuration option.
+
+Host definition starts with the word host, follwed by the name of the host and
+its IP-address. Each are separated by either space or tab. Everything after the
+character '#' is treated as a comment. For example:
+
+    host mylaptop 192.168.0.14 # The $BRAND laptop
+
+    # The web server
+    host myserver 62.78.2.11 # machine.example.com
+
+    host desktop 192.168,0,2
+
+
+BUGS
+----
+
+If you have found a bug in the program, please report it to the author
+directly. See AUTHOR section below for contact information.
+
+
+AUTHOR
+------
+
+Written by Tuomo Hartikainen <tth@harski.org>.
+
+
+LICENSE
+-------
+
+Licensed under the 2-clause BSD license. See the supplied LICENSE file for
+details.
